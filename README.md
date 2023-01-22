@@ -1,2 +1,2 @@
 # FilmStaffDatabase
- A simple film-staff relational database made for a university Python course
+ A simple film-staff relational database made for a university Python course.
