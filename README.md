@@ -5,11 +5,13 @@ A simple film-staff relational database made for a university Python course.
 This program requires the sqlalchemy package (```pip install SQLAlchemy==1.4.46```) (will add automatic installation later).
 
 ## Usage
-Run the OfflineClient.py file with the -h flag to know the available options for managing the database. (Soon will add OnlineClient that will communicate with flask webapp)
+Run the OfflineClient.py file with the -h flag to know the available options for managing the database.
 
 ## Running a the web app version
 
 Whilst you can modify the database offline via the OfflineClient, you can also run a web app running the command `flask run` with a standard environment (app.py being the main app in the environment). Hosting it will allow you to access an API with all the features of the OfflineClient:
+
+When hosting the flask app, you can make requests via the OnlineClient.py just as you would with OfflineClient.
 
 ### Staff API
 
