@@ -52,7 +52,7 @@ def GetID(name):
         else:
             return allFilm.all()
     except:
-        return []
+        return -1
 
 def GetStaff(id):
     """Get all staff that worked on this film"""
@@ -64,4 +64,4 @@ def GetStaff(id):
         else:
             return staff.all()
     except:
-        return []
+        return -1

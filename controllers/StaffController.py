@@ -16,7 +16,7 @@ def AddStaff(first_name, last_name, speciality):
 def RemoveStaff(first_name, last_name):
     """Remove staff from the staff table"""
     try:
-        query = local_session.query(Staff).filter(Staff.first_name == first_name and Staff.last_name == last_name)
+        query = local_session.query(Staff).filter(Staff.first_name == first_name, Staff.last_name == last_name)
         query.delete()
         local_session.commit()
         return query.count()
@@ -46,13 +46,13 @@ def ClearAll():
 def GetID(first_name, last_name):
     """Get staff id from their name"""
     try:
-        staff = local_session.query(Staff).filter(Staff.first_name == first_name and Staff.first_name == last_name)
+        staff = local_session.query(Staff).filter(Staff.first_name == first_name, Staff.last_name == last_name)
         if not(staff):
             return []
         else:
             return staff.all()
-    except:
-        return []
+    except Exception as e:
+        return -1
 
 def GetFilms(id):
     """Get all films the staff has worked on"""
@@ -64,4 +64,4 @@ def GetFilms(id):
         else:
             return allfilms.all()
     except:
-        return []
+        return -1
