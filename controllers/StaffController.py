@@ -17,9 +17,10 @@ def RemoveStaff(first_name, last_name):
     """Remove staff from the staff table"""
     try:
         query = local_session.query(Staff).filter(Staff.first_name == first_name, Staff.last_name == last_name)
+        count = query.count()
         query.delete()
         local_session.commit()
-        return query.count()
+        return count
     except:
         return -1
         
@@ -27,9 +28,10 @@ def RemoveStaffID(id):
     """Remove staff from the staff table using the staff id"""
     try:
         query = local_session.query(Staff).filter(Staff.id == id)
+        count = query.count()
         query.delete()
         local_session.commit()
-        return query.count()
+        return count
     except:
         return -1
 
@@ -51,7 +53,7 @@ def GetID(first_name, last_name):
             return []
         else:
             return staff.all()
-    except Exception as e:
+    except:
         return -1
 
 def GetFilms(id):

@@ -17,9 +17,10 @@ def RemoveFilm(name):
     """Remove film from the films table"""
     try:
         query = local_session.query(Film).filter(Film.name == name)
+        count = query.count()
         query.delete()
         local_session.commit()
-        return query.count()
+        return count
     except:
         return -1
         
@@ -27,9 +28,10 @@ def RemoveFilmID(id):
     """Remove film from the films table using id"""
     try:
         query = local_session.query(Film).filter(Film.id == id)
+        count = query.count()
         query.delete()
         local_session.commit()
-        return query.count()
+        return count
     except:
         return -1
 
