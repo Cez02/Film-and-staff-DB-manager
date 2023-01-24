@@ -181,14 +181,18 @@ if args.managing == "Staff":
             print("Failed to remove all staff")
     elif args.getid:
         res = StaffController.GetID(args.getid[0], args.getid[1])
-        if len(res) > 0:
+        if res is int:
+            print("Failed to search for staff")
+        elif len(res) > 0:
             for rec in res:
                 print(f"Found staff named {args.getid[0]} {args.getid[1]} with speciality {rec.speciality} and id {rec.id}")
         else:
             print("Couldn't find any staff")
     elif args.getfilms:
         res = StaffController.GetFilms(args.getfilms[0])
-        if len(res) > 0:
+        if res is int:
+            print("Failed to search for staff")
+        elif len(res) > 0:
             print("This staff has worked on:")
             for rec in res:
                 print(f"- {rec.name} released in {rec.release_date}")

@@ -1,3 +1,4 @@
+import json
 from sqlalchemy import Table, Column, Integer, ForeignKey, String, DateTime
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.schema import ForeignKey, Table
@@ -33,6 +34,14 @@ class Staff(Base):
 
     films_credited = relationship("Film", secondary=StaffFilmAssociationTable, overlaps="staff", back_populates="staff_credited")
 
+    def toDict(self):
+        return {
+            "id" : str(self.id),
+            "first_name" : self.first_name,
+            "last_name" : self.last_name,
+            "speciality" : self.speciality
+        }
+
 class Film(Base):
     __tablename__="films"
 
@@ -57,3 +66,11 @@ class Film(Base):
         return value
 
     staff_credited = relationship("Staff", secondary=StaffFilmAssociationTable, overlaps="films", back_populates="films_credited")
+    
+    def toDict(self):
+        return {
+            "id" : str(self.id),
+            "name" : self.name,
+            "description" : self.description,
+            "release_date" : self.release_date
+        }
