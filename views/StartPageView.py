@@ -15,4 +15,4 @@ class StartPage(tk.Frame):
         # button2 = tk.Button(self, text="Go to film records",
         #                     command=lambda: controller.show_frame("FilmPage"))
         button1.pack()
-        button2.pack()
+        # button2.pack()
