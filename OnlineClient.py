@@ -1,9 +1,9 @@
 from sqlalchemy import DateTime, Integer, String
 from DBEngine import engine, Session
 from model.FilmDefinitions import Film, Staff
-import controllers.StaffController as StaffController
-import controllers.FilmController as FilmController
-import controllers.BothController as BothController
+import services.StaffController as StaffController
+import services.FilmController as FilmController
+import services.BothController as BothController
 import requests
 import urllib
 import ast
@@ -51,6 +51,13 @@ staff_options.add_argument(
     metavar="[staff id]",
     type=int,
     help="Remove every person with given id.",
+)
+
+staff_options.add_argument(
+    "--getall",
+    "-ga",
+    help="Get all staff.",
+    action='store_true'
 )
 
 staff_options.add_argument(
@@ -107,6 +114,13 @@ film_options.add_argument(
     metavar="[film id]",
     type=int,
     help="Remove film with given id.",
+)
+
+film_options.add_argument(
+    "--getall",
+    "-ga",
+    help="Get all films.",
+    action='store_true'
 )
 
 film_options.add_argument(
@@ -203,6 +217,16 @@ if args.managing == "Staff":
         except Exception as e:
             print("Failed to make the request.")
             print(e)
+    elif args.getall:
+        try:
+            res = requests.get(ServerURL + "/Staff/getall")
+            if res.status_code == HTTPStatus.OK:
+                print(res.text)
+            else:
+                print(f"Failed to get all staff with response status code: {res.status_code}")
+        except Exception as e:
+            print("Failed to make the request.")
+            print(e)
     elif args.clearall:
         try:
             res = requests.delete(ServerURL + "/Staff/clear")
@@ -274,6 +298,16 @@ elif args.managing == "Film":
                 print(res.text)
             else:
                 print(f"Failed to remove film with response status code: {res.status_code}")
+        except Exception as e:
+            print("Failed to make the request.")
+            print(e)
+    elif args.getall:
+        try:
+            res = requests.get(ServerURL + "/Film/getall")
+            if res.status_code == HTTPStatus.OK:
+                print(res.text)
+            else:
+                print(f"Failed to get all films with response status code: {res.status_code}")
         except Exception as e:
             print("Failed to make the request.")
             print(e)

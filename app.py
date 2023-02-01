@@ -1,8 +1,7 @@
 from flask import Flask
-from views.StaffViewBlueprint import staff_page
-from views.FilmViewBlueprint import film_page
-from views.BothViewBlueprint import both_page
-import controllers.StaffController as StaffController
+from controllers.StaffViewBlueprint import staff_page
+from controllers.FilmViewBlueprint import film_page
+from controllers.BothViewBlueprint import both_page
 
 app = Flask(__name__)
 

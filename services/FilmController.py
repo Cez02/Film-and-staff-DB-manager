@@ -35,6 +35,17 @@ def RemoveFilmID(id):
     except:
         return -1
 
+def GetAll():
+    """Get all films"""
+    try:
+        allFilm = local_session.query(Film)
+        if not(allFilm):
+            return []
+        else:
+            return allFilm.all()
+    except:
+        return -1
+
 def ClearAll():
     """Remove all films from the films table"""
     try:

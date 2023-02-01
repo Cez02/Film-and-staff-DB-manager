@@ -35,6 +35,17 @@ def RemoveStaffID(id):
     except:
         return -1
 
+def GetAll():
+    """Get all staff"""
+    try:
+        allStaff = local_session.query(Staff)
+        if not(allStaff):
+            return []
+        else:
+            return allStaff.all()
+    except:
+        return -1
+
 def ClearAll():
     """Remove all staff from the staff table"""
     try:

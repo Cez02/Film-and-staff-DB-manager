@@ -32,6 +32,14 @@ def RemoveFilmID():
     else:
         abort(500)
 
+@film_page.route("/Film/getall", methods=['GET'])
+def GetAll():
+    res = FilmController.GetAll()
+    if res is int:
+        abort(500)
+    else:
+        return [x.toDict() for x in res]
+
 @film_page.route("/Film/clear", methods=['DELETE'])
 def ClearAll():
     if FilmController.ClearAll():

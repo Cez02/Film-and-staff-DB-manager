@@ -1,9 +1,9 @@
 from sqlalchemy import DateTime, Integer, String
 from DBEngine import engine, Session
 from model.FilmDefinitions import Film, Staff
-import controllers.StaffController as StaffController
-import controllers.FilmController as FilmController
-import controllers.BothController as BothController
+import services.StaffController as StaffController
+import services.FilmController as FilmController
+import services.BothController as BothController
 
 import argparse
 

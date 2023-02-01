@@ -34,6 +34,14 @@ def RemoveStaffID():
     else:
         abort(500)
 
+@staff_page.route("/Staff/getall", methods=['GET'])
+def GetAll():
+    res = StaffController.GetAll()
+    if res is int:
+        abort(500)
+    else:
+        return [x.toDict() for x in res]
+
 @staff_page.route("/Staff/clear", methods=['DELETE'])
 def ClearAll():
     if StaffController.ClearAll():
