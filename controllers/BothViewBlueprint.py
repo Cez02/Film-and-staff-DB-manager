@@ -1,6 +1,6 @@
 from flask import Blueprint, abort, request
-from controllers.HttpHelperFunctions import CheckData
-import controllers.BothController as BothController
+from services.HttpHelperFunctions import CheckData
+import services.BothController as BothController
 
 both_page = Blueprint('both_page', __name__)
 

@@ -1,6 +1,6 @@
 from flask import Blueprint, abort, jsonify
-from controllers.HttpHelperFunctions import CheckData
-import controllers.FilmController as FilmController
+from services.HttpHelperFunctions import CheckData
+import services.FilmController as FilmController
 
 film_page = Blueprint('film_page', __name__)
 

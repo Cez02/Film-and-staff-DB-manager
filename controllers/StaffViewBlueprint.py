@@ -1,6 +1,6 @@
 from flask import Blueprint, abort, request
-from controllers.HttpHelperFunctions import CheckData
-import controllers.StaffController as StaffController
+from services.HttpHelperFunctions import CheckData
+import services.StaffController as StaffController
 
 staff_page = Blueprint('staff_page', __name__)
 
