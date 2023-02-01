@@ -60,6 +60,17 @@ def GetID():
     else:
         return [x.toDict() for x in res]
 
+@staff_page.route("/Staff/update", methods=['PUT'])
+def UpdateStaff():
+    id = CheckData("id")
+    first_name = request.form["first_name"]
+    last_name = request.form["last_name"]
+    speciality = request.form["speciality"]
+    if StaffController.UpdateStaff(id=id, first_name=first_name, last_name=last_name, speciality=speciality):
+        return "Staff updated"
+    else:
+        abort(500)
+
 @staff_page.route("/Staff/film/<id>", methods=['GET'])
 def GetFilms(id):
     res = StaffController.GetFilms(id)

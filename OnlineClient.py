@@ -77,6 +77,15 @@ staff_options.add_argument(
 )
 
 staff_options.add_argument(
+    "--update",
+    "-u",
+    nargs=4,
+    metavar=("[id]", "[first name]", "[last name]", "[speciality]"),
+    type=str,
+    help="Update staff info",
+)
+
+staff_options.add_argument(
     "--getfilms",
     "-f",
     nargs=1,
@@ -245,6 +254,22 @@ if args.managing == "Staff":
                     print(f"Found {rec['first_name']} {rec['last_name']} specialized in {rec['speciality']} with id {rec['id']}")
             else:
                 print(f"Failed to get id of staff with response status code: {res.status_code}")
+        except Exception as e:
+            print("Failed to make the request.")
+            print(e)
+    if args.update:
+        try:
+            form_data = {
+                "id" : args.update[0],
+                "first_name" : args.update[1],
+                "last_name" : args.update[2],
+                "speciality" : args.update[3]
+            }
+            res = requests.put(ServerURL + "/Staff/update", data=form_data)
+            if res.status_code == HTTPStatus.OK:
+                print(res.text)
+            else:
+                print(f"Failed to update staff with response status code: {res.status_code}")
         except Exception as e:
             print("Failed to make the request.")
             print(e)

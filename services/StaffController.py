@@ -67,6 +67,26 @@ def GetID(first_name, last_name):
     except:
         return -1
 
+def UpdateStaff(id, first_name, last_name, speciality):
+    """Get staff id from their name"""
+    try:
+        staff = local_session.query(Staff).get(id)
+        if first_name is not None:
+            staff.first_name = first_name
+        if last_name is not None:
+            staff.last_name = last_name
+        if speciality is not None:
+            staff.speciality = speciality
+        
+        local_session.commit()
+        
+        if not(staff):
+            return -1
+        else:
+            return staff.all()
+    except:
+        return -1
+
 def GetFilms(id):
     """Get all films the staff has worked on"""
     try:
